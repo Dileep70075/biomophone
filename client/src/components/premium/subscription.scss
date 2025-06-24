@@ -1,0 +1,97 @@
+.subscription-page {
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    color: #333;
+  
+    .title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  
+    .current-subscription {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+  
+      p {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+      }
+  
+      .cancel-btn {
+        margin-top: 1rem;
+        background: #ff5a5a;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+  
+        &:hover {
+          background: #e04646;
+        }
+      }
+    }
+  
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+  
+      .plan-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+        h3 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: #007bff;
+        }
+  
+        .price {
+          font-size: 1.25rem;
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+        }
+  
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 1rem 0;
+  
+          li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+          }
+        }
+  
+        .subscribe-btn {
+          background: #007bff;
+          color: white;
+          border: none;
+          padding: 0.75rem 1.5rem;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background 0.3s;
+  
+          &:hover {
+            background: #0056b3;
+          }
+        }
+      }
+    }
+  }
+  

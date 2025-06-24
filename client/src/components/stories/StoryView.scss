@@ -1,0 +1,67 @@
+.story-view-container {
+    padding: 20px;
+  }
+  
+  .story-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-story-button {
+    background-color: #ff6600;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-story-button i {
+    margin-right: 8px;
+  }
+  
+  .story-list {
+    display: flex;
+    gap: 15px;
+    overflow-x: scroll;
+  }
+  
+  .story-item {
+    width: 150px;
+    height: 250px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    overflow: hidden;
+  }
+  
+  
+  .story-item img,
+  .story-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .story-upload-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  

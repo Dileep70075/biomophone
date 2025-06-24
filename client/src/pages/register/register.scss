@@ -1,0 +1,228 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.register,
+.login {
+  height: 100vh;
+  background-color: rgb(193, 190, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+
+  .card {
+    width: 60%;
+    display: flex;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+    .left {
+      flex: 1.5;
+      background: linear-gradient(rgba(39, 11, 96, 0.6), rgba(39, 11, 96, 0.6)),
+        url("https://images.pexels.com/photos/4881619/pexels-photo-4881619.jpeg?auto=compress&cs=tinysrgb&w=1600")
+          center center;
+      background-size: cover;
+      color: white;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: white;
+        color: rebeccapurple;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: #e0e0e0;
+        }
+      }
+    }
+
+    .right {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      h1 {
+        color: #555;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        input {
+          width: 100%;
+          padding: 15px;
+          border: 1px solid lightgray;
+          border-radius: 5px;
+        }
+
+        button {
+          padding: 10px;
+          background-color: #938eef;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s;
+
+          &:hover {
+            background-color: #7a6ddf;
+          }
+        }
+
+        .error {
+          font-size: 0.9rem;
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .register .card,
+  .login .card {
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .register .card .left,
+  .login .card .left {
+    flex: unset;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    h1,
+    p {
+      text-align: center;
+    }
+
+    button {
+      align-self: center;
+    }
+  }
+
+  .register .card .right,
+  .login .card .right {
+    width: 100%;
+    padding: 20px;
+    form {
+      input {
+        padding: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .register .card,
+  .login .card {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .register .card .left,
+  .login .card .left {
+    padding: 20px;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .register .card .right,
+  .login .card .right {
+    padding: 20px;
+
+    form input {
+      padding: 15px;
+    }
+
+    form button {
+      padding: 10px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .register,
+  .login {
+    padding: 10px;
+  }
+
+  .register .card,
+  .login .card {
+    width: 100%;
+    box-shadow: none;
+    padding: 15px;
+  }
+
+  .register .card .left,
+  .login .card .left {
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 0.8rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+    }
+  }
+
+  .register .card .right,
+  .login .card .right {
+    padding: 15px;
+
+    form input {
+      font-size: 0.9rem;
+    }
+  }
+}

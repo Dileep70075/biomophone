@@ -1,0 +1,140 @@
+@use "sass:color";
+$primary-color: #007bff;
+$background-color: #f8f9fa;
+$text-color: #333;
+$border-color: #ddd;
+
+.community-detail-container {
+  display: flex;
+  flex-direction: column;
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem auto;
+  max-width: 900px;
+  padding: 1.5rem;
+
+  .header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $border-color;
+
+    .community-info {
+      h1 {
+        font-size: 1.8rem;
+        color: $primary-color;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: $text-color;
+      }
+    }
+  }
+
+  .messages-section {
+    margin-top: 2rem;
+
+    h2 {
+      font-size: 1.5rem;
+      color: $primary-color;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 1rem;
+
+        .message-item {
+          display: flex;
+          align-items: flex-start;
+          background-color: #ffffff;
+          border: 1px solid $border-color;
+          border-radius: 8px;
+          padding: 1rem;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+          .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .message-content {
+            flex: 1;
+
+            p {
+              margin: 0.2rem 0;
+              font-size: 1rem;
+              color: $text-color;
+
+              strong {
+                color: $primary-color;
+              }
+            }
+
+            span {
+              font-size: 0.8rem;
+              color: #999;
+            }
+          }
+        }
+      }
+    }
+
+    p {
+      text-align: center;
+      color: $text-color;
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .community-detail-container {
+    padding: 1rem;
+
+    .header-section {
+      flex-direction: column;
+      text-align: center;
+
+      .community-info {
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .messages-section ul li .message-item {
+      flex-direction: column;
+      align-items: center;
+
+      .avatar {
+        margin-bottom: 0.5rem;
+      }
+
+      .message-content {
+        text-align: center;
+      }
+    }
+  }
+}

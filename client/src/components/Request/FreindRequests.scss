@@ -1,0 +1,82 @@
+.friend-requests-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fafbfc;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 32px 24px;
+}
+
+.friend-requests-container h2 {
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+  color: #222;
+  text-align: center;
+}
+
+.friend-requests-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.friend-requests-container li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 18px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.friend-requests-container li:last-child {
+  border-bottom: none;
+}
+
+.friend-requests-container strong {
+  color: #444;
+  font-weight: 500;
+}
+
+.friend-requests-container img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1.5px solid #e0e0e0;
+  margin-left: 0;
+}
+
+.friend-requests-container button {
+  margin-top: 6px;
+  padding: 5px 14px;
+  border: none;
+  border-radius: 5px;
+  background: #1976d2;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.friend-requests-container button:hover {
+  background: #125ea2;
+}
+
+.friend-requests-container button[disabled],
+.friend-requests-container button.waiting {
+  background: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.friend-requests-container button.friend {
+  background: #43a047;
+}
+
+.friend-requests-container button.reject {
+  background: #e53935;
+}
+
+.friend-requests-container button.accept {
+  background: #43a047;
+}

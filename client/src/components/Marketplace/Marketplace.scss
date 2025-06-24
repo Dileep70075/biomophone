@@ -1,0 +1,84 @@
+.marketplace {
+  padding: 20px;
+.insertData{
+  margin-right: 0;
+  // padding: 5px 12px;
+  // background-color: #f3f0f0;
+  // color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+
+  &:hover {
+    // background-color: #d5baba;
+  }
+}
+  .insert-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 10px;
+      background: #fafafa;
+      border-radius: 8px;
+
+      span {
+        margin-bottom: 5px;
+        font-size: 16px;
+      }
+
+      img {
+        margin: 10px 0;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      }
+
+      .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      button {
+        margin-right: 0;
+        padding: 5px 12px;
+        background-color: #9d8887;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+
+        &:hover {
+          background-color: #7c7676;
+        }
+      }
+
+      .insert-button {
+        background-color: #2196F3;
+        &:hover {
+          background-color: #1976D2;
+        }
+      }
+    }
+  }
+}

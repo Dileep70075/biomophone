@@ -1,0 +1,363 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// model User {
+//   Message       Message[]
+//   id            Int       @id @default(autoincrement())
+//   username      String    @unique
+//   email         String    @unique
+//   password      String
+//   name          String
+//   img           String?
+//   posts         Post[] // A user can have many posts
+//   comments      Comment[] // A user can have many comments
+//   followers     User[]    @relation("UserRelations") // Users following this user
+//   following     User[]    @relation("UserRelations") // Users this user is following
+//   groups        Group[]   @relation("UserGroups")
+//   stories       Story[]
+//   viewers       Story[]   @relation("StoryViewers")
+//   events        Event[]   @relation("EventCreator")
+//   rsvps         RSVP[] // A user can have many RSVPs
+//   createdAt     DateTime  @default(now())
+//   updatedAt     DateTime? @updatedAt
+//   sessionTokens Json?     @default("[]") // Store tokens or session identifiers
+
+//   StoryViewer StoryViewer[]
+// }
+
+model User {
+  Message         Message[]
+  id              Int            @id @default(autoincrement())
+  username        String         @unique
+  email           String         @unique
+  password        String
+  name            String
+  isBlocked       Boolean        @default(false)
+  isMuted         Boolean        @default(false)
+  img             String?
+  bio             String?
+  interests       Json? // Use JSON to store array of interests
+  privacySettings Privacy        @default(PUBLIC) // Privacy settings
+  posts           Post[] // A user can have many posts
+  comments        Comment[] // A user can have many comments
+  followers       User[]         @relation("UserRelations") // Users following this user
+  following       User[]         @relation("UserRelations") // Users this user is following
+  groups          Group[]        @relation("UserGroups")
+  stories         Story[]
+  stats           Stats?         @relation(fields: [statsId], references: [id]) // Profile stats
+  statsId         Int? // Ensure the optional field matches the optional relation
+  viewers         Story[]        @relation("StoryViewers")
+  events          Event[]        @relation("EventCreator")
+  rsvps           RSVP[] // A user can have many RSVPs
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime?      @updatedAt
+  sessionTokens   Json?          @default("[]") // Store tokens or session identifiers
+ // sessionTokens String[] @default([])
+  subscription    Subscription[]
+  StoryViewer     StoryViewer[]
+
+  Report Report[]
+
+  Conversation     Conversation[]  @relation("ConversationParticipants")
+  sentRequests     FriendRequest[] @relation("SentRequests")
+  receivedRequests FriendRequest[] @relation("ReceivedRequests")
+  friends          User[]          @relation("UserFriends")
+
+  User User[] @relation("UserFriends")
+
+  CreatorSubscription CreatorSubscription[]
+
+  Tip Tip[]
+}
+
+model Tip {
+  id        Int      @id @default(autoincrement())
+  // user        User     @relation(fields: [userId], references: [id])
+  userId    Int
+  creator   User     @relation(fields: [creatorId], references: [id])
+  creatorId Int
+  amount    Float
+  timestamp DateTime @default(now())
+}
+
+model Ad {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  imageUrl    String?
+  link        String
+  startDate   DateTime @default(now())
+  endDate     DateTime
+  isActive    Boolean  @default(true)
+  impressions Int      @default(0)
+}
+
+model CreatorSubscription {
+  id        Int      @id @default(autoincrement())
+  // user        User     @relation(fields: [userId], references: [id])
+  userId    Int
+  creator   User     @relation(fields: [creatorId], references: [id])
+  creatorId Int
+  startDate DateTime @default(now())
+  endDate   DateTime
+  isActive  Boolean  @default(true)
+}
+
+model Subscription {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  plan      String // Plan name: "Basic", "Premium", "Pro"
+  startDate DateTime @default(now())
+  endDate   DateTime
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // user      User     @relation(fields: [userId], references: [id])
+}
+
+model Report {
+  id     Int    @id @default(autoincrement())
+  userId Int
+  reason String
+  status String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Stats {
+  id        Int @id @default(autoincrement())
+  followers Int @default(0)
+  posts     Int @default(0)
+  likes     Int @default(0)
+
+  User User[] // Keep this for reverse relation
+}
+
+model Post {
+  id        Int       @id @default(autoincrement())
+  content   String
+  img       String?
+  isFlagged Boolean   @default(false)
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  Int
+  comments  Comment[] // A post can have many comments
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// model FriendRequest {
+//   id         Int           @id @default(autoincrement())
+//   sender     User          @relation("SentRequests", fields: [senderId], references: [id])
+//   senderId   Int
+//   receiver   User          @relation("ReceivedRequests", fields: [receiverId], references: [id])
+//   receiverId Int
+  
+//   status     RequestStatus @default(PENDING)
+//   createdAt  DateTime      @default(now())
+//   updatedAt  DateTime      @updatedAt
+// }
+model FriendRequest {
+  id         Int           @id @default(autoincrement())
+
+  sender     User          @relation("SentRequests", fields: [senderId], references: [id], onDelete: Cascade)
+  senderId   Int
+
+  receiver   User @relation("ReceivedRequests", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  receiverId Int
+
+  status     RequestStatus @default(PENDING)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+}
+
+
+model Community {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  type        String
+  userId      Int 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  content   String
+  post      Post      @relation(fields: [postId], references: [id])
+  postId    Int
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  Int
+  parentId  Int? // For replies to comments
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies") // A comment can have replies
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Group {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  type        GroupType
+  users       User[]    @relation("UserGroups")
+  events      Event[]
+  createdAt   DateTime  @default(now())
+  Message     Message[]
+}
+
+model Event {
+  id           Int       @id @default(autoincrement())
+  name         String?
+  description  String?
+  creator      User      @relation("EventCreator", fields: [creatorId], references: [id])
+  creatorId    Int
+  group        Group?    @relation(fields: [groupId], references: [id])
+  groupId      Int?
+  date         DateTime
+  rsvps        RSVP[]
+  reminderTime DateTime?
+}
+
+model RSVP {
+  id      Int        @id @default(autoincrement())
+  user    User       @relation(fields: [userId], references: [id])
+  userId  Int
+  event   Event      @relation(fields: [eventId], references: [id])
+  eventId Int
+  status  RSVPStatus
+}
+
+// model Story {
+//   id         Int       @id @default(autoincrement())
+//   user       User      @relation(fields: [userId], references: [id])
+//   userId     Int
+//   content    String
+//   imageUrl   String?
+//   videoUrl   String?
+//   views      Int       @default(0)
+//   expiresAt  DateTime
+//   createdAt  DateTime  @default(now())
+//   viewers    StoryViewer[]
+//    type       StoryType?
+// }
+
+model Story {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
+  content   String
+  type      StoryType
+  imageUrl  String?
+  videoUrl  String?
+  createdAt DateTime  @default(now())
+  expiresAt DateTime
+  views     Int       @default(0)
+  highlight Boolean   @default(false) // Indicates if the story is a highlight
+
+  StoryViewer StoryViewer[]
+
+  User User[] @relation("StoryViewers")
+}
+
+model StoryViewer {
+  id       Int      @id @default(autoincrement())
+  story    Story    @relation(fields: [storyId], references: [id])
+  storyId  Int
+  //   story     Story    @relation(fields: [storyId], references: [id])
+  //   storyId   Int
+  user     User     @relation(fields: [userId], references: [id])
+  userId   Int
+  viewedAt DateTime @default(now())
+
+  @@unique([storyId, userId]) // Prevent duplicate views
+}
+
+model Conversation {
+  id           Int       @id @default(autoincrement())
+  participants User[]    @relation("ConversationParticipants")
+  messages     Message[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Message {
+  id             Int          @id @default(autoincrement())
+  content        String
+  sender         User         @relation(fields: [senderId], references: [id])
+  senderId       Int
+  receiverId     Int
+  group          Group        @relation(fields: [groupId], references: [id])
+  groupId        Int
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  conversationId Int
+  createdAt      DateTime     @default(now())
+}
+
+// Enums
+
+enum GroupType {
+  PUBLIC
+  PRIVATE
+  HIDDEN
+}
+
+enum RSVPStatus {
+  GOING
+  MAYBE
+  NOT_GOING
+}
+
+enum StoryType {
+  IMAGE
+  VIDEO
+  TEXT
+}
+
+enum Privacy {
+  PUBLIC
+  FRIENDS_ONLY
+  PRIVATE
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
+
+model File {
+  id        Int      @id @default(autoincrement())
+  filename  String
+  mimetype  String
+  url       String
+  createdAt DateTime @default(now())
+}
+
+// model MarketplaceItem {
+//   id          Int      @id @default(autoincrement())
+//   title       String
+//   description String
+//   price       Float
+//   imageUrl    String
+//   category    String
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+// }
+model MarketplaceItem {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  price       Float
+  imageUrl    String
+  category    String
+}

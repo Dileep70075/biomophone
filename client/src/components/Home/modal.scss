@@ -1,0 +1,184 @@
+// Modal.scss
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonPop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+    backdrop-filter: blur(5px);
+}
+
+.modal {
+    background: linear-gradient(145deg, #2d3748, #1a202c);
+    padding: 32px;
+    border-radius: 16px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideIn 0.4s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+
+        h2 {
+            margin: 0;
+            font-size: 1.75rem;
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+    }
+
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+
+            strong {
+                color: #ffffff;
+                font-weight: 600;
+            }
+        }
+    }
+
+    .close-button {
+        background: none;
+        border: none;
+        font-size: 28px;
+        line-height: 1;
+        padding: 8px;
+        cursor: pointer;
+        color: #e2e8f0;
+        transition: all 0.2s;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+    }
+
+    .logout-button {
+        display: block;
+        width: 100%;
+        padding: 16px 28px;
+        margin: 0;
+        background: linear-gradient(145deg, #3182ce, #2b6cb0);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+
+        &:hover {
+            background: linear-gradient(145deg, #2b6cb0, #2c5282);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.4);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:first-of-type {
+            animation: buttonPop 0.3s ease-out 0.2s backwards;
+        }
+
+        &:last-of-type {
+            background: linear-gradient(145deg, #4a5568, #2d3748);
+            margin-top: 16px;
+            animation: buttonPop 0.3s ease-out 0.4s backwards;
+
+            &:hover {
+                background: linear-gradient(145deg, #2d3748, #1a202c);
+                box-shadow: 0 4px 12px rgba(45, 55, 72, 0.4);
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .modal {
+        width: 95%;
+        padding: 24px;
+        gap: 20px;
+
+        .modal-header {
+            padding-bottom: 12px;
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .logout-button {
+            padding: 14px 24px;
+            font-size: 1rem;
+        }
+    }
+}

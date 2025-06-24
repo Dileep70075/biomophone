@@ -1,0 +1,23 @@
+@use "../../styles/theme" as *;
+@use "../../styles/responsive" as *;
+
+
+
+.home{
+  @include themify($themes) {
+    flex: 6;
+    padding: 20px 70px;
+    background-color: themed("bgSoft");
+    min-height: 100vh;
+
+    @include mobile {
+      flex: 100%;
+      padding: 10px;
+    }
+
+    @include tablet {
+      padding: 20px;
+      flex: 100%;
+    }
+  }
+ }

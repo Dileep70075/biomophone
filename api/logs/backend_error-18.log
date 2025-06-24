@@ -1,0 +1,38 @@
+Error initializing bucket: S3Error: The request signature we calculated does not match the signature you provided. Check your key and signing method.
+    at parseError (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/xml-parser.mjs:30:13)
+    at Module.parseResponseError (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/xml-parser.mjs:77:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Client.makeRequestStreamAsync (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:508:19)
+    at async Client.getBucketRegionAsync (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:558:19)
+    at async Client.makeRequestStreamAsync (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:479:25)
+    at async Client.makeRequestAsyncOmit (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:439:17)
+    at async Client.bucketExists (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:731:7)
+    at async initializeBucket (file:///home/biomophone/api/rewritten-controllers/posts.js:25:24) {
+  code: 'SignatureDoesNotMatch',
+  bucketname: 'biomophone',
+  resource: '/biomophone',
+  requestid: '18163AADFE141119',
+  hostid: 'dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8',
+  amzRequestid: '18163AADFE141119',
+  amzId2: 'dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8',
+  amzBucketRegion: undefined
+}
+Error initializing bucket: S3Error: The request signature we calculated does not match the signature you provided. Check your key and signing method.
+    at parseError (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/xml-parser.mjs:30:13)
+    at Module.parseResponseError (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/xml-parser.mjs:77:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Client.makeRequestStreamAsync (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:508:19)
+    at async Client.getBucketRegionAsync (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:558:19)
+    at async Client.makeRequestStreamAsync (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:479:25)
+    at async Client.makeRequestAsyncOmit (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:439:17)
+    at async Client.bucketExists (file:///home/biomophone/api/node_modules/minio/dist/esm/internal/client.mjs:731:7)
+    at async initializeBucket (file:///home/biomophone/api/rewritten-controllers/posts.js:25:24) {
+  code: 'SignatureDoesNotMatch',
+  bucketname: 'biomophone',
+  resource: '/biomophone',
+  requestid: '18163B34820A7AD7',
+  hostid: 'dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8',
+  amzRequestid: '18163B34820A7AD7',
+  amzId2: 'dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8',
+  amzBucketRegion: undefined
+}

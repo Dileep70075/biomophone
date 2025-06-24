@@ -1,0 +1,197 @@
+@use "../../styles/theme" as *;
+@use "../../styles/responsive" as *;
+
+
+
+.navbar {
+  @include themify($themes) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    height: 50px;
+    border-bottom: 1px solid themed("border");
+    position: sticky;
+    top: 0;
+    background-color: themed("bg");
+    color: themed("textColor");
+    z-index: 999;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      span {
+        font-weight: bold;
+        font-size: 20px;
+        color: themed("logo");
+      }
+
+      .icons {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid themed("border");
+        border-radius: 5px;
+        padding: 5px;
+
+        input {
+          border: none;
+          width: 300px;
+          background-color: transparent;
+          color: themed("textColor");
+        }
+      }
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+
+      svg {
+        font-size: 24px;
+        color: themed("textColor");
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background-color: themed("bg");
+      border: 1px solid themed("border");
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      &.open {
+        display: flex;
+      }
+
+      svg {
+        font-size: 24px;
+        margin: 5px 0;
+        color: themed("textColor");
+      }
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        span {
+          display: none; /* Hide user name in dropdown */
+        }
+      }
+    }
+
+    /* Mobile and Tablet Responsiveness */
+    @media (max-width: 768px) {
+      .left {
+        .icons {
+          display: none; /* Hide icons on mobile and tablet */
+        }
+      }
+
+      .right {
+        display: none; /* Hide right section on mobile and tablet */
+      }
+
+      .hamburger {
+        display: block; /* Show hamburger menu */
+      }
+
+      .search input {
+        width: 150px; /* Adjust search bar width for smaller screens */
+      }
+
+      .bottom-bar {
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        background-color: themed("bg");
+        border-top: 1px solid themed("border");
+        flex-direction: row;
+        align-items: center;
+
+        svg {
+          font-size: 24px;
+          color: themed("textColor");
+        }
+      }
+
+      .bottom-bar .more-icons {
+        display: none;
+      }
+
+      .more-icons {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        bottom: 50px;
+        right: 10px;
+        padding: 10px;
+        background-color: themed("bg");
+        border: 1px solid themed("border");
+        border-radius: 8px;
+        gap: 15px;
+      }
+
+      .bottom-bar.show-more .more-icons {
+        display: flex; /* Show additional icons when the parent has 'show-more' class */
+      }
+    }
+
+    /* Desktop and Larger Devices */
+    @media (min-width: 769px) {
+      .bottom-bar {
+        display: none; /* Hide bottom bar on larger screens */
+      }
+
+      .isMenuOpen {
+        display: none;
+      }
+    }
+  }
+}
